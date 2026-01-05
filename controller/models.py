@@ -5,6 +5,8 @@ class User(db.Model):
     user_email = db.Column(db.String(120), unique=True, nullable=False)
     passsword = db.Column(db.String(120), nullable=False)
     user_name = db.Column(db.String(120), nullable=False)
+
+    roles = db.relationship('Role', secondary='user_role', backref='users', lazy=True)
     customers= db.relationship('Customer', backref='user', lazy=True,uselist=False)
     store_manager_details= db.relationship('StoreManager', backref='user', lazy=True,uselist=False)
 
