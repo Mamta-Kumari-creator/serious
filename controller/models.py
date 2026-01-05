@@ -2,9 +2,9 @@ from controller.database import db
 
 class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True,autoincrement=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-
+    user_email = db.Column(db.String(120), unique=True, nullable=False)
+    passsword = db.Column(db.String(120), nullable=False)
+    user_name = db.Column(db.String(120), nullable=False)
     customers= db.relationship('Customer', backref='user', lazy=True,uselist=False)
     store_manager_details= db.relationship('StoreManager', backref='user', lazy=True,uselist=False)
 
