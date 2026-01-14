@@ -58,11 +58,10 @@ with app.app_context():
     
 
 
-@app.route('/')
-def index():
-    return render_template('base.html')
+
 
 from controller.auth_routes import *
+from controller.routes import *
 
 if __name__ == '__main__':
     app.run(debug=True)
