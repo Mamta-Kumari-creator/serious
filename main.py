@@ -49,7 +49,7 @@ with app.app_context():
         admin_user = User(
             user_name='Super Admin',
             user_email='admin@gmail.com',
-            passsword='1234567890',
+            passsword='123456789',
             roles=[admin_role]
         )
         db.session.add(admin_user)

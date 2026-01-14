@@ -3,5 +3,6 @@ from flask import render_template, request, redirect, url_for, flash, session
 from controller.models import *
 
 @app.route('/')
-def home():
-    return render_template('base.html')
+def dashboard():
+    return render_template('dashboard.html')
+

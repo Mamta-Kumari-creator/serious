@@ -4,14 +4,18 @@ from controller.models import *
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'GET':
-        return render_template('base.html')
-    if 'user_email' in session:
-        return redirect(url_for('dashboard'))
+    
+    if request.method =='GET':
+        # Check if user is login already then redirect to dashboard
+        if 'user_email' in session:
+            ## Revist later
+            return redirect('/')
+        
+        return render_template('login.html')
     
     if request.method == 'POST':
-        username = request.form.get('email')
-        password = request.form.get('password')
+        username = request.form.get('email',None)
+        password = request.form.get('password',None)
         # Add your authentication logic here
         if not username or not password:
             flash('Please enter both username and password', 'error')
@@ -40,3 +44,15 @@ def login():
         session['user_role'] = [role.name for role in user.roles]
         flash('Login successful!', 'success')
         return redirect(url_for('dashboard'))
+    
+@app.route('/logout')
+def logout():
+    if 'user_email' not in session:
+        flash('You are not logged in')
+        return redirect(url_for('login'))
+    
+    session.pop('user_email')
+    session.pop('user_role') 
+
+    flash('You are successfully logged out')
+    return redirect(url_for('login'))
