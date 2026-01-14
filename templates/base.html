@@ -13,23 +13,36 @@
             <h1>my app</h1>
             <div class="my_panel">
                 <h2>Login</h2>
+                <form action="/login" method="post">
                 <div class="input_form">
                     
                     <div class="mb-3">
-                    <label for="user_name" class="form-label">User Name(e-mail) :</label>
-                    <input type="email" class="form-control" id="user_name" placeholder="name@example.com">
+                    <label for="user_email" class="form-label">User Name(e-mail) :</label>
+                    <input type="email" class="form-control" id="user_email" placeholder="name@example.com" name="email">
                     </div>
                     <div class="mb-3">
                     <label for="password" class="form-label">Password :</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password">
                     </div>
                     <div class="mb-3">
                         <button type="button" class="btn btn-outline-success">Submit</button>
                         New User ?<a href="#">signup</a>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
+    
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
 </body>
 </html>

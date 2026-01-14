@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from controller.database import db
 from controller.config import config
 from controller.models import *
@@ -59,8 +59,10 @@ with app.app_context():
 
 
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def index():
+    return render_template('base.html')
+
+from controller.auth_routes import *
 
 if __name__ == '__main__':
     app.run(debug=True)
